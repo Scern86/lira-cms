@@ -3,9 +3,11 @@
     "description": "Lira framework based content management system",
     "type": "project",
     "license": "MIT",
+    "homepage": "https://scern.eu/lira/cms",
     "autoload": {
         "psr-4": {
-            "Scern\\Lira\\": "lira/"
+            "Lira\\Application\\": "Application/",
+            "Lira\\Components\\": "Components/"
         }
     },
     "authors": [
@@ -14,6 +16,11 @@
             "email": "scern86@gmail.com"
         }
     ],
-    "minimum-stability": "stable",
-    "require": {}
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">8.3",
+        "lira/framework": "dev-main",
+        "ext-pdo": "*",
+        "symfony/http-foundation": "7.1.x-dev"
+    }
 }
