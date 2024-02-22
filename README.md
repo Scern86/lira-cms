@@ -17,7 +17,7 @@ Lira framework based content management system
 - symfony/http-foundation
 
 # Installation
-### composer create-project scern/lira-cms
+### composer create-project lira/cms
 
 # License
 The Lira framework is licensed under the [MIT](LICENSE) license.
