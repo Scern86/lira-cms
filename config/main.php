@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'domain'=>'https://example.com',
+    'domain'=>'',
     'defaultLanguage'=>'en',
     'languagesList'=>['en',],
 ];

@@ -5,6 +5,7 @@ Lira framework based content management system
 - Separation of code into layers: Application and Component(s).
 - Internal request redirection, restarting routing to a new path if further processing is required.
 - Request routing using path-based regular expressions (SEF).
+- Creating and handling Events
 - Support for GET/POST/PUT/DELETE HTTP methods.
 - Ability to implement RESTful.
 

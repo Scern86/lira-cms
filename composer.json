@@ -19,7 +19,7 @@
     "minimum-stability": "dev",
     "require": {
         "php": ">8.3",
-        "lira/framework": "dev-main",
+        "lira/framework": "dev-CURRENT",
         "ext-pdo": "*",
         "symfony/http-foundation": "7.1.x-dev"
     }
