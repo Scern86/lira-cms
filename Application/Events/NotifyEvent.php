@@ -2,7 +2,7 @@
 
 namespace Lira\Application\Events;
 
-readonly class NotifyEvent extends \Lira\Framework\Events\Event
+readonly class NotifyEvent extends BaseEvent
 {
 
 }
