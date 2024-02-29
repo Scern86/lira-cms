@@ -2,12 +2,11 @@
 
 namespace Lira\Components;
 
-use Lira\Application\Controller;
 use Lira\Application\Result\Error;
 use Lira\Framework\Results\Result;
 use Symfony\Component\HttpFoundation\Response;
 
-class DefaultController extends Controller
+class DefaultController extends \Lira\Framework\Controller
 {
     public function execute(string $uri): Result
     {

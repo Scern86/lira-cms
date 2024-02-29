@@ -7,6 +7,7 @@ use Lira\Framework\Logger\LoggerInterface;
 class Logger implements LoggerInterface
 {
     protected array $loggers = [];
+
     public function addLogger(\Monolog\Logger $logger)
     {
         $name = $logger->getName();
