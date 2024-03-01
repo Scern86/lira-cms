@@ -34,26 +34,34 @@ class User extends Model
         return false;
     }
 
-    public function getById(int $id): ?array
+    public function getById(int $id): \Lira\Application\Objects\User
     {
         try {
             $query = $this->db->prepare("SELECT * FROM {$this->table} WHERE id = :id");
             $query->execute(['id'=>$id]);
-            return $query->fetch(\PDO::FETCH_ASSOC);
+            $result = $query->fetch(\PDO::FETCH_ASSOC);
+            if(!empty($result)){
+                unset($result['password']);
+                return new \Lira\Application\Objects\User(...$result);
+            }
         }catch (\Throwable $e){
-            //var_dump($e);
-            return null;
+            var_dump($e);
         }
+        return new \Lira\Application\Objects\User();
     }
-    public function getByLogin(string $login): ?array
+    public function getByLogin(string $login): \Lira\Application\Objects\User
     {
         try {
             $query = $this->db->prepare("SELECT * FROM {$this->table} WHERE login = :login");
             $query->execute(['login'=>$login]);
-            return $query->fetch(\PDO::FETCH_ASSOC);
+            $result = $query->fetch(\PDO::FETCH_ASSOC);
+            if(!empty($result)){
+                unset($result['password']);
+                return new \Lira\Application\Objects\User(...$result);
+            }
         }catch (\Throwable $e){
-            //var_dump($e);
-            return null;
+            var_dump($e);
         }
+        return new \Lira\Application\Objects\User();
     }
 }

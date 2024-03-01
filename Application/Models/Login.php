@@ -16,7 +16,7 @@ class Login extends Model
         $this->db = $database->connect();
     }
 
-    public function checkLogin(string $ssid,string $ipAddress,string $component): array
+    public function checkLogin(string $ssid,string $ipAddress,string $component): \Lira\Application\Objects\Login
     {
         try {
             $today = new \DateTime();
@@ -31,11 +31,14 @@ class Login extends Model
                     'created'=>$yesterday
                 ]
             );
-            return $query->fetch(\PDO::FETCH_ASSOC);
+            $result = $query->fetch(\PDO::FETCH_ASSOC);
+            if(!empty($result)){
+                return new \Lira\Application\Objects\Login(...$result);
+            }
         }catch (\Throwable $e){
-            return [];
-            //var_dump($e);
+            var_dump($e);
         }
+        return new \Lira\Application\Objects\Login();
     }
 
     public function login(string $ssid,string $ipAddress,int $idUser,string $component): void
@@ -53,7 +56,7 @@ VALUES(:ssid,:ip_address,:id_user,:is_active,:component)");
                 ]
             );
         }catch (\Throwable $e){
-            //var_dump($e);
+            var_dump($e);
         }
     }
 
