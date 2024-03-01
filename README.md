@@ -16,6 +16,7 @@ Lira framework based content management system
 - monolog
 - lira/framework
 - symfony/http-foundation
+- robmorgan/phinx
 
 # Installation
 ### composer create-project lira/cms

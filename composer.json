@@ -23,6 +23,7 @@
         "ext-memcached": "*",
         "lira/framework": "dev-CURRENT",
         "symfony/http-foundation": "7.1.x-dev",
-        "monolog/monolog": "^3.0@dev"
+        "monolog/monolog": "^3.0@dev",
+        "robmorgan/phinx": "0.x-dev"
     }
 }
