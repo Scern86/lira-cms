@@ -23,8 +23,8 @@
         "ext-pdo": "*",
         "ext-memcached": "*",
         "lira/framework": "dev-main",
-        "symfony/http-foundation": "7.1.x-dev",
-        "monolog/monolog": "^3.0@dev",
-        "robmorgan/phinx": "0.x-dev"
+        "symfony/http-foundation": "^7.0",
+        "monolog/monolog": "^3.5",
+        "robmorgan/phinx": "^0.16.0"
     }
 }
