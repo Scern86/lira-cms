@@ -21,7 +21,7 @@
         "php": ">8.3",
         "ext-pdo": "*",
         "ext-memcached": "*",
-        "lira/framework": "CURRENT",
+        "lira/framework": "*",
         "symfony/http-foundation": "7.1.x-dev",
         "monolog/monolog": "^3.0@dev",
         "robmorgan/phinx": "0.x-dev"
