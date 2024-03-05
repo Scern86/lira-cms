@@ -25,7 +25,7 @@ $request = \Symfony\Component\HttpFoundation\Request::createFromGlobals();
 $dbParams = new PhpFile(ROOT_DIR.DS.'config'.DS.'database.php');
 $database = new \Lira\Framework\Database\PdoAdapter($dbParams->database,$dbParams->user,$dbParams->password,$dbParams->host,$dbParams->port);
 
-$logger = new \Lira\Application\Logger();
+$logger = new \Lira\Framework\Logger\MonologAdapter();
 $logger->addLogger(new \Monolog\Logger('error',[new \Monolog\Handler\StreamHandler(ROOT_DIR.DS.'_logs'.DS.'error.log',\Monolog\Level::Warning)]));
 
 $lexicon = new \Lira\Framework\Lexicon\Lexicon(
