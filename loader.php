@@ -13,7 +13,7 @@ use \Lira\Framework\Config\{Config,PhpFile};
 $config = new Config();
 $config->set('main',new PhpFile(ROOT_DIR.DS.'config'.DS.'main.php'));
 $config->set('routes',new PhpFile(ROOT_DIR.DS.'config'.DS.'routes.php'));
-$config->set('cache',new PhpFile(ROOT_DIR.DS.'config'.DS.'memcached.php'));
+//$config->set('cache',new PhpFile(ROOT_DIR.DS.'config'.DS.'memcached.php'));
 
 $router = new \Lira\Framework\Router(
     \Lira\Components\DefaultController::class,
@@ -23,10 +23,24 @@ $router = new \Lira\Framework\Router(
 $request = \Symfony\Component\HttpFoundation\Request::createFromGlobals();
 
 $dbParams = new PhpFile(ROOT_DIR.DS.'config'.DS.'database.php');
-$database = new \Lira\Framework\Database\PdoAdapter($dbParams->database,$dbParams->user,$dbParams->password,$dbParams->host,$dbParams->port);
+$database = new \Lira\Framework\Database\PdoAdapter(
+    $dbParams->database,
+    $dbParams->user,
+    $dbParams->password,
+    $dbParams->host,
+    $dbParams->port
+);
 
 $logger = new \Lira\Framework\Logger\MonologAdapter();
-$logger->addLogger(new \Monolog\Logger('error',[new \Monolog\Handler\StreamHandler(ROOT_DIR.DS.'_logs'.DS.'error.log',\Monolog\Level::Warning)]));
+$logger->addLogger(
+    new \Monolog\Logger(
+        'error',
+        [new \Monolog\Handler\StreamHandler(
+            ROOT_DIR.DS.'_logs'.DS.'error.log',
+            \Monolog\Level::Warning
+        )]
+    )
+);
 
 $lexicon = new \Lira\Framework\Lexicon\Lexicon(
     new \Lira\Framework\Lexicon\Lang('en'),
