@@ -18,7 +18,7 @@ class AdminSeed extends AbstractSeed
     {
         $data = [
             [
-                'name'    => 'foo',
+                'name'    => 'Admin',
                 'login' => 'admin',
                 'password'=>'$2y$10$R3PJRP2RGC0rHwrThupCfeh.Zv9SXsEbmvms6rh0dvECemG.0AWOC',
                 'is_active'=>true,
