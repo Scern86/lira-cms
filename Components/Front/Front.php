@@ -6,7 +6,7 @@ use Lira\Application\App;
 use Lira\Framework\Results\Result;
 use Lira\Application\Result\{Success,Error,Json,Redirect,InternalRedirect};
 use Lira\Components\DefaultController;
-use Lira\Framework\{Controller,Router};
+use Lira\Framework\{Config\PhpFile, Controller, Router};
 use Symfony\Component\HttpFoundation\Response;
 
 class Front extends Controller
@@ -15,11 +15,8 @@ class Front extends Controller
 
     public function __construct()
     {
-        $app = App::getInstance();
-        //$app->view->addHeaderLink('<link rel="stylesheet" href="/assets/css/style.min.css">');
-        //$app->view->addBodyLink('<script defer src="/assets/js/script.min.js"></script>');
-
-        $app->database->init();
+        App::getInstance()->database->init();
+        App::getInstance()->config->set('routes.front',new PhpFile(self::COMPONENT_DIR.DS.'routes.php'));
     }
 
     public function execute(string $uri): Result
@@ -30,7 +27,7 @@ class Front extends Controller
             $view = $app->view;
             $view->template = self::COMPONENT_DIR.DS.'templates'.DS.'default.inc';
 
-            $router = new Router(DefaultController::class,$app->config->get('routes')->front);
+            $router = new Router(DefaultController::class,$app->config->get('routes.front')->default);
             $class = $router->execute($uri);
             $controller = new $class();
 
