@@ -1,6 +1,10 @@
 <?php
 
 return [
-    '#^/(ru|en)($|/)#'=>Lira\Components\Lang::class,
-    '#^/$#' => \Lira\Components\Front\Index\Index::class,
+    'default'=>[
+        '#^/(en)($|/)#'=>Lira\Components\Lang::class,
+        '#^/admin($|/)#' => \Lira\Components\Admin\Admin::class,
+        '#^(?!/admin)($|/)#' => \Lira\Components\Front\Front::class,
+
+    ],
 ];

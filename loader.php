@@ -17,7 +17,7 @@ $config->set('routes',new PhpFile(ROOT_DIR.DS.'config'.DS.'routes.php'));
 
 $router = new \Lira\Framework\Router(
     \Lira\Components\DefaultController::class,
-    $config->get('routes')->main
+    $config->get('routes')->default
 );
 
 $request = \Symfony\Component\HttpFoundation\Request::createFromGlobals();
