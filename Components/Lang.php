@@ -14,10 +14,10 @@ class Lang extends \Lira\Framework\Controller
         $urlArray = array_filter(explode('/',$uri));
         $lang = array_shift($urlArray);
 
-        $url = str_replace(['/ru'],'',$uri);
+        $lexicon = App::getInstance()->lexicon;
+        $url = str_replace(['/'.$lexicon->defaultLang->code],'',$uri);
         if(empty($url)) $url = '/';
 
-        $lexicon = App::getInstance()->lexicon;
         if($lang==$lexicon->defaultLang->code) return new Redirect($url);
 
         $lexicon->currentLang = new \Lira\Framework\Lexicon\Lang($lang);
