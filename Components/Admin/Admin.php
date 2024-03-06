@@ -3,6 +3,7 @@
 namespace Lira\Components\Admin;
 
 use Lira\Application\App;
+use Lira\Components\Front\Front;
 use Lira\Framework\Results\Result;
 use Lira\Application\Result\{Success,Error,Json,Redirect,InternalRedirect};
 use Lira\Components\DefaultController;
@@ -28,7 +29,7 @@ class Admin extends Controller
             $app = App::getInstance();
 
             $view = $app->view;
-            $view->template = self::COMPONENT_DIR.DS.'templates'.DS.'default.inc';
+            $view->template = Front::COMPONENT_DIR.DS.'templates'.DS.'default.inc';
 
             $router = new Router(DefaultController::class,$app->config->get('routes.admin')->default);
             $class = $router->execute($uri);

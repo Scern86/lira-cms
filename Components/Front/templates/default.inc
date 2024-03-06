@@ -12,13 +12,28 @@
 </head>
 <body>
     <header>
-
+        <a class="logo" href="/">
+            LiraCMS
+        </a>
+        <div class="menu-block">
+            <nav class="menu">
+                <a class="item" href="/">Home</a>
+            </nav>
+        </div>
     </header>
     <main>
-        <?=$this->content;?>
+        <div class="wrapper">
+            <?=$this->content;?>
+        </div>
     </main>
     <footer>
-
+        <div class="wrapper">
+            <div class="right">
+                <div class="copyright">
+                    © 2024 SCERN
+                </div>
+            </div>
+        </div>
     </footer>
     <?=implode('',$this->bodysLinks);?>
 </body>
