@@ -1,0 +1,30 @@
+{
+  "name": "LiraCMS",
+  "version": "1.0.0",
+  "description": "Gulp",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "gulp dev",
+    "build": "gulp"
+  },
+  "browserslist": [
+    "last 3 versions"
+  ],
+  "author": "scern",
+  "license": "MIT",
+  "dependencies": {
+    "del": "^7.1.0",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^9.0.0",
+    "gulp-cssimport": "^7.0.0",
+    "gulp-csso": "^4.0.1",
+    "gulp-group-css-media-queries": "^1.2.2",
+    "gulp-plumber": "^1.2.1",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^5.1.0",
+    "gulp-shorthand": "^1.1.0",
+    "gulp-uglify": "^3.0.2",
+    "sass": "^1.69.5"
+  }
+}

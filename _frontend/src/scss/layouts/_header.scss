@@ -1,0 +1,48 @@
+header{
+  background-color: var(--color-dark);
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  & .logo{
+    width: 100px;
+    font-size: 34px;
+    color:#FFF;
+  }
+
+  & .menu-block{
+    align-items: center;
+    height: 100%;
+    top:0;
+    left:0;
+    background-color: rgba(0,0,0,.93);
+    justify-content: center;
+    z-index: 2;
+    display: flex;
+    position: static;
+    background: none;
+    flex-direction: row;
+    gap:10px;
+    &.active{
+      display: flex;
+      width: 100%;
+    }
+  }
+
+  & .menu{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex:1 1 auto;
+    flex-direction: row;
+
+    & .item{
+      font-size: 18px;
+      font-weight: 300;
+      color:var(--color-orange);
+
+    }
+  }
+
+}

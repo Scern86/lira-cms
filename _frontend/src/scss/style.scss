@@ -1,0 +1,30 @@
+:root{
+  --color-white: #FFFFFF;
+  --color-black: #000000;
+  --color-light:#f1f1f1;
+  --color-dark:#333333;
+  --color-orange:#ff9800;
+  --color-blue:#03a9f4;
+  --color-grey-blue:#00bcd4;
+}
+
+html,body{
+  margin:0;
+  padding:0;
+}
+body{
+  background-color: var(--color-white);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font:300 18px/32px Arial,sans-serif;
+  gap: 10px;
+}
+
+@import "utils/_mixins.scss";
+@import "utils/_tipography.scss";
+
+@import "layouts/_wrapper.scss";
+@import 'layouts/_header.scss';
+@import 'layouts/_main.scss';
+@import 'layouts/_footer.scss';
