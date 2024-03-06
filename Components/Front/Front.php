@@ -15,8 +15,11 @@ class Front extends Controller
 
     public function __construct()
     {
-        App::getInstance()->database->init();
-        App::getInstance()->config->set('routes.front',new PhpFile(self::COMPONENT_DIR.DS.'routes.php'));
+        $app = App::getInstance();
+        $app->database->init();
+        $app->config->set('routes.front',new PhpFile(self::COMPONENT_DIR.DS.'routes.php'));
+        $app->view->addHeaderLink('<link rel="stylesheet" href="/assets/css/style.min.css">');
+        $app->view->addBodyLink('<script defer src="/assets/js/script.min.js"></script>');
     }
 
     public function execute(string $uri): Result
