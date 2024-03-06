@@ -22,6 +22,9 @@ class Admin extends Controller
     public function execute(string $uri): Result
     {
         try {
+            $uri = str_replace('/admin','',$uri);
+            if(empty($uri)) $uri = '/';
+
             $app = App::getInstance();
 
             $view = $app->view;
