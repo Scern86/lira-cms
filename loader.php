@@ -16,7 +16,7 @@ $config->set('routes',new PhpFile(ROOT_DIR.DS.'config'.DS.'routes.php'));
 //$config->set('cache',new PhpFile(ROOT_DIR.DS.'config'.DS.'memcached.php'));
 
 $router = new \Lira\Framework\Router(
-    \Lira\Components\DefaultController::class,
+    \Lira\Components\Default\Controller::class,
     $config->get('routes')->default
 );
 
@@ -70,5 +70,5 @@ try{
 
     $response->send();
 }catch (\Throwable $e){
-    var_dump($e);
+    //var_dump($e);
 }

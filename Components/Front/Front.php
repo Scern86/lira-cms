@@ -5,7 +5,6 @@ namespace Lira\Components\Front;
 use Lira\Application\App;
 use Lira\Framework\Results\Result;
 use Lira\Application\Result\{Success,Error,Json,Redirect,InternalRedirect};
-use Lira\Components\DefaultController;
 use Lira\Framework\{Config\PhpFile, Controller, Router};
 use Symfony\Component\HttpFoundation\Response;
 
@@ -30,7 +29,7 @@ class Front extends Controller
             $view = $app->view;
             $view->template = self::COMPONENT_DIR.DS.'templates'.DS.'default.inc';
 
-            $router = new Router(DefaultController::class,$app->config->get('routes.front')->default);
+            $router = new Router(\Lira\Components\Front\Default\Controller::class,$app->config->get('routes.front')->default);
             $class = $router->execute($uri);
             $controller = new $class();
 
