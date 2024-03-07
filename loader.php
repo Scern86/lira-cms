@@ -43,7 +43,7 @@ $logger->addLogger(
 );
 
 $lexicon = new \Lira\Framework\Lexicon\Lexicon(
-    new \Lira\Framework\Lexicon\Lang('en'),
+    new \Lira\Framework\Lexicon\Lang($config->get('main')->defaultLanguage),
     $config->get('main')->languagesList
 );
 
