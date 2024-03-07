@@ -25,7 +25,7 @@ class Article extends Model
             $result = $query->fetch(\PDO::FETCH_ASSOC);
             if(array($result)) return $result;
         }catch (\Throwable $e){
-            var_dump($e);
+            //var_dump($e);
         }
         return [];
     }
@@ -39,7 +39,7 @@ class Article extends Model
             $result = $query->fetchAll(\PDO::FETCH_ASSOC);
             if(array($result)) return $result;
         }catch (\Throwable $e){
-            var_dump($e);
+            //var_dump($e);
         }
         return [];
     }

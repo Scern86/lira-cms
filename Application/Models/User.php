@@ -29,7 +29,7 @@ class User extends Model
                 }
             }
         }catch (\Throwable $e){
-            var_dump($e);
+            //var_dump($e);
         }
         return false;
     }
@@ -45,7 +45,7 @@ class User extends Model
                 return new \Lira\Application\Objects\User(...$result);
             }
         }catch (\Throwable $e){
-            var_dump($e);
+            //var_dump($e);
         }
         return new \Lira\Application\Objects\User();
     }
@@ -60,7 +60,7 @@ class User extends Model
                 return new \Lira\Application\Objects\User(...$result);
             }
         }catch (\Throwable $e){
-            var_dump($e);
+            //var_dump($e);
         }
         return new \Lira\Application\Objects\User();
     }

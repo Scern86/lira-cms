@@ -18,8 +18,8 @@ class Front extends Controller
         $app = App::getInstance();
         $app->database->init();
         $app->config->set('routes.front',new PhpFile(self::COMPONENT_DIR.DS.'routes.php'));
-        $app->view->addHeaderLink('<link rel="stylesheet" href="/assets/css/style.min.css">');
-        $app->view->addBodyLink('<script defer src="/assets/js/script.min.js"></script>');
+        $app->view->addHeaderLink('<link rel="stylesheet" href="/assets/css/style.min.css'.time().'">');
+        $app->view->addBodyLink('<script defer src="/assets/js/script.min.js'.time().'"></script>');
     }
 
     public function execute(string $uri): Result

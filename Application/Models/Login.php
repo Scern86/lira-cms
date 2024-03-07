@@ -36,7 +36,7 @@ class Login extends Model
                 return new \Lira\Application\Objects\Login(...$result);
             }
         }catch (\Throwable $e){
-            var_dump($e);
+            //var_dump($e);
         }
         return new \Lira\Application\Objects\Login();
     }
@@ -56,7 +56,7 @@ VALUES(:ssid,:ip_address,:id_user,:is_active,:component)");
                 ]
             );
         }catch (\Throwable $e){
-            var_dump($e);
+            //var_dump($e);
         }
     }
 
@@ -73,7 +73,7 @@ VALUES(:ssid,:ip_address,:id_user,:is_active,:component)");
                 ]
             );
         }catch (\Throwable $e){
-            var_dump($e);
+            //var_dump($e);
         }
     }
 }
