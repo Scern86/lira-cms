@@ -31,7 +31,7 @@ class Admin extends Controller
             $view = $app->view;
             $view->template = Front::COMPONENT_DIR.DS.'templates'.DS.'default.inc';
 
-            $router = new Router(DefaultController::class,$app->config->get('routes.admin')->default);
+            $router = new Router(Default\Controller::class,$app->config->get('routes.admin')->default);
             $class = $router->execute($uri);
             $controller = new $class();
 
