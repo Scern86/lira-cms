@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 class Admin extends Controller
 {
     const COMPONENT_DIR = ROOT_DIR . DS . 'Components' . DS . 'Admin';
+    const COMPONENT_URL = '/admin';
 
     public function __construct()
     {
@@ -23,7 +24,7 @@ class Admin extends Controller
     public function execute(string $uri): Result
     {
         try {
-            $uri = str_replace('/admin','',$uri);
+            $uri = str_replace(self::COMPONENT_URL,'',$uri);
             if(empty($uri)) $uri = '/';
 
             $app = App::getInstance();
