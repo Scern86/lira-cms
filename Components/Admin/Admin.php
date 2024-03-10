@@ -7,7 +7,7 @@ use Lira\Components\Front\Front;
 use Lira\Framework\Results\Result;
 use Lira\Application\Result\{Success,Error,Json,Redirect,InternalRedirect};
 use Lira\Components\DefaultController;
-use Lira\Framework\{Config\PhpFile, Controller, Router};
+use Lira\Framework\{Config\PhpFile, Controller, Router, Session};
 use Symfony\Component\HttpFoundation\Response;
 
 class Admin extends Controller
@@ -17,8 +17,15 @@ class Admin extends Controller
 
     public function __construct()
     {
-        App::getInstance()->database->init();
-        App::getInstance()->config->set('routes.admin',new PhpFile(self::COMPONENT_DIR.DS.'routes.php'));
+        $app = App::getInstance();
+        $app->database->init();
+        $app->initSession(new Session());
+        $app->config->set('routes.admin',new PhpFile(self::COMPONENT_DIR.DS.'routes.php'));
+        $permissions = [
+            'Lira\Components\Admin\Article\Articles::list'=>true,
+
+        ];
+        $app->initUser(new User($permissions));
     }
 
     public function execute(string $uri): Result
