@@ -26,7 +26,7 @@ class AdminSeed extends AbstractSeed
             ],
         ];
 
-        $posts = $this->table('main_user');
+        $posts = $this->table('main_users');
         $posts->insert($data)
             ->saveData();
     }
