@@ -23,9 +23,18 @@ class Admin extends Controller
         $app->config->set('routes.admin',new PhpFile(self::COMPONENT_DIR.DS.'routes.php'));
         $permissions = [
             'Lira\Components\Admin\Article\Articles::list'=>true,
+            'Lira\Components\Admin\Article\Article::add'=>true,
+            'Lira\Components\Admin\Article\Article::update'=>true,
+            'Lira\Components\Admin\Article\Article::delete'=>true,
+            'Lira\Components\Admin\Category\Categories::list'=>true,
+            'Lira\Components\Admin\Category\Category::add'=>true,
+            'Lira\Components\Admin\Category\Category::update'=>true,
+            'Lira\Components\Admin\Category\Category::delete'=>true,
 
         ];
         $app->initUser(new User($permissions));
+        $app->view->addBodyLink('<script defer src="https://code.jquery.com/jquery-3.7.1.min.js" 
+integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>');
     }
 
     public function execute(string $uri): Result
