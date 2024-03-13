@@ -30,6 +30,9 @@ class Admin extends Controller
             'Lira\Components\Admin\Category\Category::add'=>true,
             'Lira\Components\Admin\Category\Category::update'=>true,
             'Lira\Components\Admin\Category\Category::delete'=>true,
+            'Lira\Components\Admin\Messages\Messages::list'=>true,
+            'Lira\Components\Admin\Messages\Message::show'=>true,
+            'Lira\Components\Admin\Messages\Message::delete'=>true,
 
         ];
         $app->initUser(new User($permissions));

@@ -8,6 +8,8 @@ return [
         '#^/articles$#'=>\Lira\Components\Admin\Article\Articles::class,
         '#^/category($|/)#'=>\Lira\Components\Admin\Category\Category::class,
         '#^/categories#'=>\Lira\Components\Admin\Category\Categories::class,
+        '#^/messages#'=>\Lira\Components\Admin\Messages\Messages::class,
+        '#^/message#'=>\Lira\Components\Admin\Messages\Message::class,
 
     ]
 ];
