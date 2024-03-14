@@ -47,10 +47,11 @@ class Front extends Controller
                 case InternalRedirect::class:
                     return $result;
                 default:
-                    return new Error('Controller error');
+                    throw new \Exception('Controller error');
             }
         } catch (\Throwable $e) {
-            return new Error($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
+            App::getInstance()->logger->get('error')->critical('Component Front error',[$e]);
+            return new Error('500 Server error', Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 }

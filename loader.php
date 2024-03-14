@@ -42,6 +42,25 @@ $logger->addLogger(
     )
 );
 
+$logger->addLogger(
+    new \Monolog\Logger(
+        'security',
+        [new \Monolog\Handler\StreamHandler(
+            ROOT_DIR . DS . '_logs' . DS . 'security.log',
+            \Monolog\Level::Notice
+        )]
+    )
+);
+$logger->addLogger(
+    new \Monolog\Logger(
+        'debug',
+        [new \Monolog\Handler\StreamHandler(
+            ROOT_DIR . DS . '_logs' . DS . 'debug.log',
+            \Monolog\Level::Debug
+        )]
+    )
+);
+
 $lexicon = new \Lira\Framework\Lexicon\Lexicon(
     new \Lira\Framework\Lexicon\Lang($config->get('main')->defaultLanguage),
     $config->get('main')->languagesList
@@ -70,5 +89,5 @@ try{
 
     $response->send();
 }catch (\Throwable $e){
-    //var_dump($e);
+    $logger->get('error')->critical('Application error',[$e]);
 }
