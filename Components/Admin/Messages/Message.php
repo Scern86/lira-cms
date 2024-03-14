@@ -48,13 +48,13 @@ class Message extends Controller
                 return new Success($view->render());
         }
     }
-    private function delete(int $idArticle): Result
+    private function delete(int $idMessage): Result
     {
         if(!App::getInstance()->user->isMethodAllowed(__METHOD__)) {
             return new Error('Forbidden',Response::HTTP_FORBIDDEN);
         }
 
-        if ($this->model->delete($idArticle)) {
+        if ($this->model->delete($idMessage)) {
             return new Success('Success');
 
         }

@@ -36,15 +36,13 @@
             var messageId = $(e.target).data('id');
             $.ajax(
                 {
-                    url:'<?=\Lira\Components\Admin\Admin::COMPONENT_URL;?>/messages/' + messageId,
+                    url:'<?=\Lira\Components\Admin\Admin::COMPONENT_URL;?>/message/' + messageId,
                     type: 'DELETE',
-                    /*dataType: 'json',*/
                     success: result=>{
                         window.location.reload();
                     },
                     error:(xhr,status,error)=>{
                         alert('Error');
-                        /*alert(xhr.responseJSON.message);*/
                     }
                 }
             )
