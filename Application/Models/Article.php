@@ -2,6 +2,7 @@
 
 namespace Lira\Application\Models;
 
+use Lira\Application\App;
 use Lira\Framework\Database\DatabaseInterface;
 use Lira\Framework\Model;
 
@@ -25,7 +26,20 @@ class Article extends Model
             $result = $query->fetch(\PDO::FETCH_ASSOC);
             if(array($result)) return $result;
         }catch (\Throwable $e){
-            //var_dump($e);
+            App::getInstance()->logger->get('errors')->error('Error. Article model. Method getArticleById',[$e]);
+        }
+        return [];
+    }
+
+    public function getArticleByUrl(string $url): array
+    {
+        try{
+            $query = $this->db->prepare("SELECT * FROM {$this->table} WHERE url = :url");
+            $query->execute(['url'=>$url]);
+            $result = $query->fetch(\PDO::FETCH_ASSOC);
+            if(array($result)) return $result;
+        }catch (\Throwable $e){
+            App::getInstance()->logger->get('errors')->error('Error. Article model. Method getArticleByUrl',[$e]);
         }
         return [];
     }
@@ -39,7 +53,7 @@ class Article extends Model
             $result = $query->fetchAll(\PDO::FETCH_ASSOC);
             if(array($result)) return $result;
         }catch (\Throwable $e){
-            //var_dump($e);
+            App::getInstance()->logger->get('errors')->error('Error. Article model. Method getArticlesByCategoryId',[$e]);
         }
         return [];
     }
