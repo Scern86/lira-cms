@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use Phinx\Migration\AbstractMigration;
 
-final class CreateTableWebCategoryArticleRef extends AbstractMigration
+final class CreateTableExtObjectStr extends AbstractMigration
 {
     /**
      * Change Method.
@@ -19,12 +19,12 @@ final class CreateTableWebCategoryArticleRef extends AbstractMigration
      */
     public function change(): void
     {
-        $table = $this->table('web_category_article_ref', ['id' => false, 'primary_key' => ['id_category','id_article']]);
+        $table = $this->table('ext_object_str_ref', ['id' => false, 'primary_key' => ['id_object','definition']]);
         $table
-            ->addColumn('id_category', 'integer')
-            ->addColumn('id_article', 'integer')
-            ->addColumn('pos', 'integer',['default'=>0])
-            ->addIndex(['id_category', 'id_article'], ['unique' => true])
+            ->addColumn('id_object', 'string',['limit'=>50])
+            ->addColumn('definition', 'string',['limit'=>25])
+            ->addColumn('value', 'string')
+            ->addIndex(['id_object', 'definition'], ['unique' => true])
             ->create();
     }
 }

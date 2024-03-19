@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use Phinx\Migration\AbstractMigration;
 
-final class AddColumnUrlToWebArticles extends AbstractMigration
+final class CreateTableExtObjectText extends AbstractMigration
 {
     /**
      * Change Method.
@@ -19,8 +19,12 @@ final class AddColumnUrlToWebArticles extends AbstractMigration
      */
     public function change(): void
     {
-        $table = $this->table('web_articles');
-        $table->addColumn('url', 'string', ['after' => 'created'])
-            ->update();
+        $table = $this->table('ext_object_text_ref', ['id' => false, 'primary_key' => ['id_object','definition']]);
+        $table
+            ->addColumn('id_object', 'string',['limit'=>50])
+            ->addColumn('definition', 'string',['limit'=>25])
+            ->addColumn('value', 'text')
+            ->addIndex(['id_object', 'definition'], ['unique' => true])
+            ->create();
     }
 }

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use Phinx\Migration\AbstractMigration;
 
-final class AddColumnUrlToWebCategories extends AbstractMigration
+final class CreateTableExtObjectNum extends AbstractMigration
 {
     /**
      * Change Method.
@@ -19,8 +19,12 @@ final class AddColumnUrlToWebCategories extends AbstractMigration
      */
     public function change(): void
     {
-        $table = $this->table('web_categories');
-        $table->addColumn('url', 'string', ['after' => 'created'])
-            ->update();
+        $table = $this->table('ext_object_num_ref', ['id' => false, 'primary_key' => ['id_object','definition']]);
+        $table
+            ->addColumn('id_object', 'string',['limit'=>50])
+            ->addColumn('definition', 'string',['limit'=>25])
+            ->addColumn('value', 'integer')
+            ->addIndex(['id_object', 'definition'], ['unique' => true])
+            ->create();
     }
 }

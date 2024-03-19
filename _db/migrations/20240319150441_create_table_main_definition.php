@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use Phinx\Migration\AbstractMigration;
 
-final class CreateTableWebCategories extends AbstractMigration
+final class CreateTableMainDefinition extends AbstractMigration
 {
     /**
      * Change Method.
@@ -19,12 +19,12 @@ final class CreateTableWebCategories extends AbstractMigration
      */
     public function change(): void
     {
-        $table = $this->table('web_categories', ['id' => false, 'primary_key' => ['id']]);
+        $table = $this->table('main_definition', ['id' => false, 'primary_key' => ['name']]);
         $table
-            ->addColumn('id', 'integer', ['identity' => true])
-            ->addColumn('created', 'timestamp', ['default' => 'CURRENT_TIMESTAMP'])
-            ->addColumn('title', 'string')
-            ->addColumn('id_parent', 'integer')
+            ->addColumn('name', 'string',['limit'=>25])
+            ->addColumn('type', 'string',['limit'=>25])
+            ->addColumn('description', 'string')
+            ->addIndex(['id_category', 'id_article'], ['unique' => true])
             ->create();
     }
 }
