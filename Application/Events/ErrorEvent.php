@@ -2,7 +2,9 @@
 
 namespace Lira\Application\Events;
 
-readonly class ErrorEvent extends BaseEvent
+use Lira\Framework\Events\Event;
+
+readonly class ErrorEvent extends Event
 {
 
 }

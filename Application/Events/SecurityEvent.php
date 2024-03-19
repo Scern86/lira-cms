@@ -2,7 +2,9 @@
 
 namespace Lira\Application\Events;
 
-readonly class SecurityEvent extends BaseEvent
+use Lira\Framework\Events\Event;
+
+readonly class SecurityEvent extends Event
 {
 
 }
