@@ -10,6 +10,37 @@ use Lira\Application\Result\{Success,Error,Json,Redirect};
 use Symfony\Component\HttpFoundation\{Request,Response,JsonResponse,RedirectResponse};
 use \Lira\Framework\Config\{Config,PhpFile};
 
+$logger = new \Lira\Framework\Logger\MonologAdapter();
+$logger->addLogger(
+    new \Monolog\Logger(
+        'errors',
+        [new \Monolog\Handler\StreamHandler(
+            ROOT_DIR . DS . '_logs' . DS . 'error.log',
+            \Monolog\Level::Warning
+        )]
+    )
+);
+
+$eventDispatcher = new \Lira\Framework\Events\Dispatcher();
+
+set_error_handler(function($errno, $errstr, $errfile, $errline) use ($eventDispatcher) {
+    if ($errno == E_USER_NOTICE) {
+        $event = new \Lira\Application\Events\ErrorEvent('log.errors',['message'=>$errstr,'file'=>$errfile,'line'=>$errline]);
+        $eventDispatcher->dispatch($event);
+        return true;
+    }
+    return false;
+});
+
+
+
+$eventDispatcher->listen(
+    'log.errors',
+    function($event) use($logger){
+        $logger->get('errors')->error($event->data['message'],$event->data);
+    }
+);
+
 $config = new Config();
 $config->set('main',new PhpFile(ROOT_DIR.DS.'config'.DS.'main.php'));
 $config->set('routes',new PhpFile(ROOT_DIR.DS.'config'.DS.'routes.php'));
@@ -29,17 +60,6 @@ $database = new \Lira\Framework\Database\PdoAdapter(
     $dbParams->password,
     $dbParams->host,
     $dbParams->port
-);
-
-$logger = new \Lira\Framework\Logger\MonologAdapter();
-$logger->addLogger(
-    new \Monolog\Logger(
-        'error',
-        [new \Monolog\Handler\StreamHandler(
-            ROOT_DIR.DS.'_logs'.DS.'error.log',
-            \Monolog\Level::Warning
-        )]
-    )
 );
 
 $logger->addLogger(
@@ -89,5 +109,5 @@ try{
 
     $response->send();
 }catch (\Throwable $e){
-    $logger->get('error')->critical('Application error',[$e]);
+    //$logger->get('error')->critical('Application error',[$e]);
 }

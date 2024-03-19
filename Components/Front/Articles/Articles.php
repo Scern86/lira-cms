@@ -5,7 +5,7 @@ namespace Lira\Components\Front\Articles;
 use Lira\Application\App;
 use Lira\Application\Models\Category;
 use Lira\Framework\Results\Result;
-use Lira\Application\Result\{Success,Error};
+use Lira\Application\Result\{InternalRedirect, Success, Error};
 use Lira\Components\Front\Front;
 use Lira\Framework\View;
 use Symfony\Component\HttpFoundation\Response;
@@ -46,7 +46,7 @@ class Article extends \Lira\Framework\Controller
         $canonicalUrl = $url;
 
         $article = $this->model->getArticleByUrl($canonicalUrl);
-        if(empty($article)) return new Error('404 Page not found',Response::HTTP_NOT_FOUND);
+        if(empty($article)) return new InternalRedirect('/404');
 
         $view = new View(self::CONTROLLER_DIR.DS.'show.inc');
         $view->article = $article;
