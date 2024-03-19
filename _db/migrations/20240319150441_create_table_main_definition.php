@@ -24,7 +24,7 @@ final class CreateTableMainDefinition extends AbstractMigration
             ->addColumn('name', 'string',['limit'=>25])
             ->addColumn('type', 'string',['limit'=>25])
             ->addColumn('description', 'string')
-            ->addIndex(['id_category', 'id_article'], ['unique' => true])
+            ->addIndex(['name'], ['unique' => true])
             ->create();
     }
 }

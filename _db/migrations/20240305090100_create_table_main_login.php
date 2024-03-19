@@ -25,9 +25,9 @@ final class CreateTableMainLogin extends AbstractMigration
             ->addColumn('created', 'timestamp', ['default' => 'CURRENT_TIMESTAMP'])
             ->addColumn('ssid', 'string')
             ->addColumn('ip_address', 'string',['limit'=>20])
-            ->addColumn('id_user', 'integer')
+            ->addColumn('id_user', 'string', ['limit' => 50])
             ->addColumn('is_active', 'boolean', ['default' => false])
-            ->addColumn('component', 'string',['limit'=>50])
+            ->addColumn('component', 'string', ['limit' => 50])
             ->create();
     }
 }
