@@ -22,7 +22,7 @@
         "php": ">8.3",
         "ext-pdo": "*",
         "ext-memcached": "*",
-        "lira/framework": "^7.4",
+        "lira/framework": "7.4.1.x-dev",
         "symfony/http-foundation": "^7.0",
         "monolog/monolog": "^3.5",
         "robmorgan/phinx": "^0.16.0"
