@@ -24,11 +24,12 @@ class Category extends Model
         try{
             $query = $this->db->prepare("SELECT a.* FROM {$this->tableArticles} AS a, {$this->tableCategoryRef} AS ref, {$this->table} AS c
          WHERE a.id = ref.id_article AND c.id = ref.id_category AND  c.url = :category_url ORDER BY ref.pos ASC");
-            $query->execute(['category_url'=>$categoryUrl]);
+            $query->bindValue('category_url',$categoryUrl);
+            $query->execute();
             $result = $query->fetchAll(\PDO::FETCH_ASSOC);
             if(array($result)) return $result;
         }catch (\Throwable $e){
-            App::getInstance()->logger->get('errors')->error('Error. Category model. Method getArticlesByCategoryUrl',[$e]);
+            trigger_error($e->getMessage(),E_USER_WARNING);
         }
         return [];
     }

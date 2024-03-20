@@ -22,12 +22,12 @@ class Message extends Model
     {
         try{
             $query = $this->db->prepare("INSERT INTO {$this->table} (name,email,message) VALUES(:name,:email,:message)");
-            $query->bindValue('name',$name,\PDO::PARAM_STR);
-            $query->bindValue('email',$email,\PDO::PARAM_STR);
-            $query->bindValue('message',$message,\PDO::PARAM_STR);
+            $query->bindValue('name',$name);
+            $query->bindValue('email',$email);
+            $query->bindValue('message',$message);
             return $query->execute();
         }catch (\Throwable $e){
-            App::getInstance()->logger->get('errors')->error('Error. Message model. Method add',[$e]);
+            trigger_error($e->getMessage(),E_USER_WARNING);
         }
         return false;
     }

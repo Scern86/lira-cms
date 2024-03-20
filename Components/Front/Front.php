@@ -50,7 +50,7 @@ class Front extends Controller
                     throw new \Exception('Controller error');
             }
         } catch (\Throwable $e) {
-            //App::getInstance()->logger->get('error')->critical('Component Front error',[$e]);
+            trigger_error($e->getMessage(),E_USER_WARNING);
             return new Error('500 Server error', Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }

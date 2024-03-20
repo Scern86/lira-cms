@@ -22,11 +22,13 @@ class Article extends Model
     {
         try{
             $query = $this->db->prepare("SELECT * FROM {$this->table} WHERE id = :id");
-            $query->execute(['id'=>$articleId]);
+            $query->bindValue('id',$articleId,\PDO::PARAM_INT);
+            $query->execute();
+
             $result = $query->fetch(\PDO::FETCH_ASSOC);
             if(array($result)) return $result;
         }catch (\Throwable $e){
-            App::getInstance()->logger->get('errors')->error('Error. Article model. Method getArticleById',[$e]);
+            trigger_error($e->getMessage(),E_USER_WARNING);
         }
         return [];
     }
@@ -35,11 +37,13 @@ class Article extends Model
     {
         try{
             $query = $this->db->prepare("SELECT * FROM {$this->table} WHERE url = :url");
-            $query->execute(['url'=>$url]);
+            $query->bindValue('url',$url);
+            $query->execute();
+
             $result = $query->fetch(\PDO::FETCH_ASSOC);
             if(array($result)) return $result;
         }catch (\Throwable $e){
-            App::getInstance()->logger->get('errors')->error('Error. Article model. Method getArticleByUrl',[$e]);
+            trigger_error($e->getMessage(),E_USER_WARNING);
         }
         return [];
     }
@@ -49,11 +53,13 @@ class Article extends Model
         try{
             $query = $this->db->prepare("SELECT * FROM {$this->table} AS a, {$this->table_category_ref} AS ref
          WHERE a.id = ref.id_article AND ref.id_category = :id_category ORDER BY pos ASC");
-            $query->execute(['id_category'=>$categoryId]);
+            $query->bindValue('id_category',$categoryId,\PDO::PARAM_INT);
+            $query->execute();
+
             $result = $query->fetchAll(\PDO::FETCH_ASSOC);
             if(array($result)) return $result;
         }catch (\Throwable $e){
-            App::getInstance()->logger->get('errors')->error('Error. Article model. Method getArticlesByCategoryId',[$e]);
+            trigger_error($e->getMessage(),E_USER_WARNING);
         }
         return [];
     }

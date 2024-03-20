@@ -23,20 +23,18 @@ class Login extends Model
             $yesterday = $today->modify('-1 day')->format('Y-m-d H:i:s');
             $query = $this->db->prepare("SELECT * FROM {$this->table} WHERE ssid = :ssid AND ip_address = :ip_address 
                       AND component = :component AND created > :created AND is_active=true");
-            $query->execute(
-                [
-                    'ssid'=>$ssid,
-                    'ip_address'=>$ipAddress,
-                    'component'=>$component,
-                    'created'=>$yesterday
-                ]
-            );
+            $query->bindValue('ssid',$ssid);
+            $query->bindValue('ip_address',$ipAddress);
+            $query->bindValue('component',$component);
+            $query->bindValue('created',$yesterday);
+            $query->execute();
+
             $result = $query->fetch(\PDO::FETCH_ASSOC);
             if(!empty($result)){
                 return new \Lira\Application\Objects\Login(...$result);
             }
         }catch (\Throwable $e){
-            //var_dump($e);
+            trigger_error($e->getMessage(),E_USER_WARNING);
         }
         return new \Lira\Application\Objects\Login();
     }
@@ -46,17 +44,14 @@ class Login extends Model
         try{
             $query = $this->db->prepare("INSERT INTO {$this->table} (ssid,ip_address,id_user,is_active,component) 
 VALUES(:ssid,:ip_address,:id_user,:is_active,:component)");
-            $query->execute(
-                [
-                    'ssid'=>$ssid,
-                    'ip_address'=>$ipAddress,
-                    'id_user'=>$idUser,
-                    'is_active'=>true,
-                    'component'=>$component
-                ]
-            );
+            $query->bindValue('ssid',$ssid);
+            $query->bindValue('ip_address',$ipAddress);
+            $query->bindValue('id_user',$idUser,\PDO::PARAM_INT);
+            $query->bindValue('is_active',true,\PDO::PARAM_BOOL);
+            $query->bindValue('component',$component);
+            $query->execute();
         }catch (\Throwable $e){
-            //var_dump($e);
+            trigger_error($e->getMessage(),E_USER_WARNING);
         }
     }
 
@@ -65,15 +60,12 @@ VALUES(:ssid,:ip_address,:id_user,:is_active,:component)");
         try{
             $query = $this->db->prepare("UPDATE {$this->table} SET is_active = false 
              WHERE id_user = :id_user AND ssid = :ssid AND component = :component");
-            $query->execute(
-                [
-                    'id_user'=>$idUser,
-                    'ssid'=>$ssid,
-                    'component'=>$component
-                ]
-            );
+            $query->bindValue('id_user',$idUser,\PDO::PARAM_INT);
+            $query->bindValue('ssid',$ssid);
+            $query->bindValue('component',$component);
+            $query->execute();
         }catch (\Throwable $e){
-            //var_dump($e);
+            trigger_error($e->getMessage(),E_USER_WARNING);
         }
     }
 }

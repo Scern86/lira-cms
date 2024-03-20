@@ -29,7 +29,7 @@ class User extends Model
                 }
             }
         }catch (\Throwable $e){
-            //var_dump($e);
+            trigger_error($e->getMessage(),E_USER_WARNING);
         }
         return false;
     }
@@ -38,14 +38,15 @@ class User extends Model
     {
         try {
             $query = $this->db->prepare("SELECT * FROM {$this->table} WHERE id = :id");
-            $query->execute(['id'=>$id]);
+            $query->bindValue('id',$id,\PDO::PARAM_INT);
+            $query->execute();
             $result = $query->fetch(\PDO::FETCH_ASSOC);
             if(!empty($result)){
                 unset($result['password']);
                 return new \Lira\Application\Objects\User(...$result);
             }
         }catch (\Throwable $e){
-            //var_dump($e);
+            trigger_error($e->getMessage(),E_USER_WARNING);
         }
         return new \Lira\Application\Objects\User();
     }
@@ -53,14 +54,15 @@ class User extends Model
     {
         try {
             $query = $this->db->prepare("SELECT * FROM {$this->table} WHERE login = :login");
-            $query->execute(['login'=>$login]);
+            $query->bindValue('login',$login);
+            $query->execute();
             $result = $query->fetch(\PDO::FETCH_ASSOC);
             if(!empty($result)){
                 unset($result['password']);
                 return new \Lira\Application\Objects\User(...$result);
             }
         }catch (\Throwable $e){
-            //var_dump($e);
+            trigger_error($e->getMessage(),E_USER_WARNING);
         }
         return new \Lira\Application\Objects\User();
     }

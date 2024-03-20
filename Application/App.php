@@ -92,6 +92,7 @@ class App
                 default => new \Exception('Application error')
             };
         } catch (\Throwable $e) {
+            trigger_error($e->getMessage(),E_USER_WARNING);
             return new Error($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
